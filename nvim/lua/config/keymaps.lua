@@ -10,8 +10,9 @@ local nmappings = {
   -- move
   { from = "ji",           to = "<ESC>",                         mode = mode_i },
   { from = "<C-s>",        to = "<ESC>:w<CR>",                   mode = mode_i },
+  { from = "<C-s>",        to = "<ESC>:w<CR>",                   mode = mode_n },
   { from = "S",            to = ":w<CR>" },
-  { from = "Q",            to = ":wq<CR>" },
+  { from = "Q",            to = ":bdelete<CR>:bnext<CR>" },
   { from = "J",            to = "5j" },
   { from = "K",            to = "5k" },
   { from = "<C-h>",        to = "<left>",                        mode = mode_i },
@@ -41,6 +42,9 @@ local nmappings = {
   -- Buffers 跳转
   { from = "<TAB>",        to = "<CMD>BufferLineCycleNext<CR>" },
   { from = "<S-TAB>",      to = "<CMD>BufferLineCyclePrev<CR>" },
+
+  -- Git 提交树
+  { from = "<leader>gg",        to = "<CMD>ToggleBlame virtual<CR>" },
 }
 
 for _, mapping in ipairs(nmappings) do
