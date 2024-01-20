@@ -28,7 +28,7 @@ exitstatus=$?
 if [ $exitstatus = 0 ]; then
 	{
 		for ((i = 0 ; i <= 100 ; i+=2)); do
-			sleep 0.01
+			sleep 0.005
 			echo $i
 		done
     } | whiptail --title "任务进度" --gauge "Please wait, setting is in progress" 6 60 0
