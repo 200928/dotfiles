@@ -29,15 +29,15 @@ M.config = {
 			vim.keymap.set("n", "<leader>rs", builtin.resume, m)
 			vim.keymap.set("n", "<space>b", builtin.buffers, m)
 			vim.keymap.set("n", "<space>h", builtin.oldfiles, m)
-			vim.keymap.set("n", "<space>_", builtin.current_buffer_fuzzy_find, m)
+			vim.keymap.set("n", "<space>-", builtin.current_buffer_fuzzy_find, m)
 			vim.keymap.set("n", "z=", builtin.spell_suggest, m)
 			vim.keymap.set("n", "<space>c", builtin.colorscheme, m)
 			vim.keymap.set("n", "<space>p", "<cmd>Telescope neovim-project<cr>", m)
 
 			vim.keymap.set("n", "<space>d", builtin.diagnostics, m)
 			-- vim.keymap.set('n', 'gd', builtin.lsp_definitions, m)
-			-- vim.keymap.set('n', '<c-t>', builtin.lsp_document_symbols, {})
-			-- vim.keymap.set('n', 'gi', builtin.git_status, m)
+			-- vim.keymap.set("n", "<c-t>", builtin.lsp_document_symbols, {})
+			vim.keymap.set("n", "gi", builtin.git_status, m)
 			vim.keymap.set("n", "<space>;", builtin.commands, m)
 
 			local trouble = require("trouble.providers.telescope")
@@ -141,25 +141,45 @@ M.config = {
 			vim.keymap.set("n", "<c-q>", ":Telescope commander<CR>", m)
 			commander.add({
 				{
-					desc = "Run Simulator",
-					cmd = "<CMD>Telescope simulators run<CR>",
+					desc = "Telescope builtin",
+					cmd = "<CMD>Telescope builtin<CR>",
 				},
 				{
 					desc = "Git diff",
 					cmd = "<CMD>Telescope git_status<CR>",
 				},
 				{
+					desc = "Git branches",
+					cmd = "<CMD>Telescope git_branches<CR>",
+				},
+				{
+					desc = "Git commits",
+					cmd = "<CMD>Telescope git_commits<CR>",
+				},
+				{
+					desc = "Git bcommits",
+					cmd = "<CMD>Telescope git_bcommits<CR>",
+				},
+				{
+					desc = "Git stash",
+					cmd = "<CMD>Telescope git_stash<CR>",
+				},
+				{
+					desc = "Run Simulator",
+					cmd = "<CMD>Telescope simulators run<CR>",
+				},
+				{
 					desc = "NvimTreeToggle",
 					cmd = "<CMD>NvimTreeToggle<CR>",
 				},
-				{
-					desc = "search files",
-					cmd = "<CMD>Telescope find_files<CR>",
-					keys = {
-						{ "n", "<space>f", { noremap = true } },
-						{ "v", "<space>f", { noremap = true } },
-					},
-				},
+				-- {
+				-- 	desc = "search files",
+				-- 	cmd = "<CMD>Telescope find_files<CR>",
+				-- 	keys = {
+				-- 		{ "n", "<space>f", { noremap = true } },
+				-- 		{ "v", "<space>f", { noremap = true } },
+				-- 	},
+				-- },
 				{
 					desc = "Colorthemes",
 					cmd = "<CMD>Telescope colorscheme<CR>",

@@ -1,14 +1,14 @@
 return {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    opts = {
-        -- f, t, F,T 带标签
-        modes = {
-            char = {
-                jump_labels = true
-            }
-        }
-    },
+	"folke/flash.nvim",
+	event = "VeryLazy",
+	opts = {
+		-- f, t, F,T 带标签
+		modes = {
+			char = {
+				jump_labels = true,
+			},
+		},
+	},
     -- stylua: ignore
     keys = {
         { "<leader>s", mode = { "n", "x", "o", "i" }, function() require("flash").jump() end,   desc = "Flash" },

@@ -2,7 +2,7 @@ return {
 	"xiyaowong/transparent.nvim",
 	config = function()
 		require("transparent").setup({
-			enable = true, -- boolean: enable transparent
+			-- enable = true, -- boolean: enable transparent
 			groups = { -- table: default groups
 				"Normal",
 				"NormalNC",
@@ -42,7 +42,7 @@ return {
 				"NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
 				"NvimTreeNormal", -- NvimTree
 			},
-			exclude = {}, -- table: groups you don't want to clear
+			exclude_groups = {}, -- table: groups you don't want to clear
 		})
 	end,
 }

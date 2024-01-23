@@ -27,6 +27,9 @@ return {
 				"rust-analyzer",
 				"graphql-language-service-cli",
 				"prisma-language-server",
+				"gopls",
+				"clangd",
+				"clang-format",
 			},
 		})
 	end,
