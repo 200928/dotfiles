@@ -14,7 +14,7 @@ return {
 			-- vim.g.UltiSnipsExpandTrigger = ""
 			-- vim.g.UltiSnipsJumpForwardTrigger = ""
 			-- vim.g.UltiSnipsJumpBackwardTrigger = ""
-		end
+		end,
 	},
 	-- {
 	-- 	"L3MON4D3/LuaSnip",

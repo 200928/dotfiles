@@ -13,7 +13,7 @@ return {
 			vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
 			vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 
-			require('yanky').setup({
+			require("yanky").setup({
 				ring = {
 					history_length = 2000,
 					storage = "sqlite",
@@ -41,6 +41,6 @@ return {
 					enabled = true,
 				},
 			})
-		end
+		end,
 	},
 }

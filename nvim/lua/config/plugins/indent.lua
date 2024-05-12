@@ -27,6 +27,7 @@ return {
 				-- 	error_sign = true,
 				-- },
 				chunk = {
+					enable = true,
 					chars = {
 						horizontal_line = "─",
 						vertical_line = "│",
@@ -53,19 +54,9 @@ return {
 					style = {
 						"#394263",
 						-- "#8B00FF",
+						-- vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui"),
 					},
 				},
-				-- indent = {
-				-- 	chars = {
-				-- 		"│",
-				-- 		"¦",
-				-- 		"┆",
-				-- 		"┊",
-				-- 	},
-				-- 	style = {
-				-- 		vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui"),
-				-- 	},
-				-- },
 				blank = {
 					enable = false,
 					chars = {

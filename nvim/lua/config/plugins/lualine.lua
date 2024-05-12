@@ -28,7 +28,7 @@ local diff = {
 		modified = { fg = "#ecbe7b" },
 		removed = { fg = "#ec5f67" },
 	},
-	cond = hide_in_width
+	cond = hide_in_width,
 }
 
 local mode = {
@@ -39,20 +39,19 @@ local mode = {
 	end,
 }
 
-
 local file_name = {
-	'filename',
+	"filename",
 	file_status = true, -- Displays file status (readonly status, modified status)
-	path = 1,        -- 0: Just the filename
+	path = 1, -- 0: Just the filename
 	-- 1: Relative path
 	-- 2: Absolute path
 
 	shorting_target = 40, -- Shortens path to leave 40 spaces in the window
 	-- for other components. (terrible name, any suggestions?)
 	symbols = {
-		modified = '[+]', -- Text to show when the file is modified.
-		readonly = '[-]', -- Text to show when the file is non-modifiable or readonly.
-		unnamed = '[No Name]', -- Text to show for unnamed buffers.
+		modified = "[+]", -- Text to show when the file is modified.
+		readonly = "[-]", -- Text to show when the file is non-modifiable or readonly.
+		unnamed = "[No Name]", -- Text to show for unnamed buffers.
 	},
 }
 
@@ -78,7 +77,7 @@ local progress = function()
 	local current_line = vim.fn.line(".")
 	local total_lines = vim.fn.line("$")
 	-- local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
-	local chars = { "██", "▇▇", "▆▆", "▅▅", "▄▄", "▃▃", "▂▂", "▁▁", " ", }
+	local chars = { "██", "▇▇", "▆▆", "▅▅", "▄▄", "▃▃", "▂▂", "▁▁", " " }
 	local line_ratio = current_line / total_lines
 	local index = math.ceil(line_ratio * #chars)
 	return chars[index]
@@ -96,7 +95,7 @@ return {
 	-- to make sure all required plugins and colorschemes are loaded before setup
 	-- event = "UiEnter",
 	config = function()
-		require('lualine').setup({
+		require("lualine").setup({
 			options = {
 				icons_enabled = true,
 				theme = "tokyonight",
@@ -124,7 +123,7 @@ return {
 				-- },
 				lualine_y = { location },
 				-- lualine_z = { progress },
-				lualine_z = { '%p%%/%L' },
+				lualine_z = { "%p%%/%L" },
 			},
 			inactive_sections = {
 				lualine_a = {},
@@ -137,5 +136,5 @@ return {
 			tabline = {},
 			extensions = {},
 		})
-	end
+	end,
 }

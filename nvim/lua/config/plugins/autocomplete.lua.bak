@@ -1,7 +1,10 @@
+-- 定义一个函数，用于判断光标前是否有单词
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
+
+-- 定义一个函数，用于限制字符串长度
 local limitStr = function(str)
 	if #str > 25 then
 		str = string.sub(str, 1, 22) .. "..."
@@ -9,11 +12,14 @@ local limitStr = function(str)
 	return str
 end
 
+-- 创建一个新的 Lua 模块
 local M = {}
+
+-- 配置信息
 M.config = {
-	"hrsh7th/nvim-cmp",
-	after = "SirVer/ultisnips",
-	dependencies = {
+	"hrsh7th/nvim-cmp", -- nvim-cmp 插件名称
+	after = "SirVer/ultisnips", -- 在 ultisnips 之后加载
+	dependencies = { -- 插件的依赖项
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-nvim-lsp",
@@ -21,23 +27,32 @@ M.config = {
 		"hrsh7th/cmp-calc",
 		-- "andersevenrud/cmp-tmux",
 		{
-			"onsails/lspkind.nvim",
+			"onsails/lspkind.nvim", -- 提供代码提示的图标
 			lazy = false,
-			config = function()
+			config = function() -- 配置该插件的初始化
 				require("lspkind").init()
 			end,
 		},
 		{
-			"quangnguyen30192/cmp-nvim-ultisnips",
-			config = function()
-				-- optional call to setup (see customization section)
-				require("cmp_nvim_ultisnips").setup({})
+			"quangnguyen30192/cmp-nvim-ultisnips", -- 与 UltiSnips 集成
+			config = function() -- 配置该插件的初始化
+				require("cmp_nvim_ultisnips").setup({
+					-- 设置 UltiSnips 的代码补全文件路径
+					snippet = {
+						expand = function(args)
+							vim.fn["UltiSnips#Anon"](args.body)
+						end,
+						-- 设置 UltiSnips 的代码补全文件夹路径
+						ultisnips_dir = "~/.config/nvim/snippets/",
+					},
+				})
 			end,
 		},
 		-- "L3MON4D3/LuaSnip",
 	},
 }
 
+-- 设置自动补全项的高亮样式
 local setCompHL = function()
 	local fgdark = "#2E3440"
 
@@ -80,35 +95,44 @@ local setCompHL = function()
 	vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = fgdark, bg = "#58B5A8" })
 end
 
+-- 配置函数
 M.configfunc = function()
 	local lspkind = require("lspkind")
+
+	-- 设置一些自定义的高亮样式
+	setCompHL()
 	vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 	local cmp = require("cmp")
 	local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 	-- local luasnip = require("luasnip")
 
-	setCompHL()
+	-- 设置在命令行输入时使用缓冲区作为补全来源，对于 '/' 和 '?' 命令（如果你启用了 `native_menu`，这个设置将不再起作用）。
+	cmp.setup.cmdline({ "/", "?" }, {
+		mapping = cmp.mapping.preset.cmdline(), -- 使用默认的命令行映射
+		sources = {
+			{ name = "buffer" }, -- 使用缓冲区作为补全来源
+		},
+	})
+
+	-- cmp 插件的设置
 	cmp.setup({
-		preselect = cmp.PreselectMode.None,
-		snippet = {
+		preselect = cmp.PreselectMode.None, -- 不自动预选
+		snippet = { -- 设置代码片段扩展功能
 			expand = function(args)
-				-- luasnip.lsp_expand(args.body)
-				vim.fn["UltiSnips#Anon"](args.body)
+				-- 设置了 UltiSnips 的扩展函数，使得 nvim-cmp 能够使用 UltiSnips 的代码片段
+				vim.fn["UltiSnips#Anon"](args.body) -- 使用 UltiSnips 进行代码片段扩展
 			end,
 		},
-		window = {
+		window = { -- 设置弹出窗口的样式
 			completion = {
 				-- winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
 				col_offset = 0,
 				side_padding = 0,
 			},
-			documentation = cmp.config.window.bordered(),
+			documentation = cmp.config.window.bordered(), -- 使用边框显示文档信息
 		},
-		-- window = { -- 弹出样式，有边框
-		-- 	completion = cmp.config.window.bordered(),
-		-- 	documentation = cmp.config.window.bordered(),
-		-- },
-		formatting = {
+		formatting = { -- 设置补全项的格式化
+			--  "kind"（补全项的类型）、"abbr"（补全项的缩写）、"menu"（补全项的详情菜单）
 			fields = { "kind", "abbr", "menu" },
 			maxwidth = 20,
 			maxheight = 10,
@@ -124,26 +148,20 @@ M.configfunc = function()
 				return kind
 			end,
 		},
-		sources = cmp.config.sources({
-			{ name = "nvim_lsp" },
-			{ name = "buffer" },
+		sources = cmp.config.sources({ -- 设置补全来源
+			{ name = "nvim_lsp" }, -- LSP 补全
+			{ name = "buffer" }, -- 当前文件的单词补全
 		}, {
-			{ name = "path" },
+			{ name = "path" }, -- 路径补全
 			{ name = "nvim_lua" },
 			{ name = "calc" },
-			-- { name = "luasnip" },
-			-- { name = 'tmux',    option = { all_panes = true, } },  -- this is kinda slow
+			{ name = "ultisnips" },
+			-- { name = "tmux", option = { all_panes = true } }, -- 这个比较慢，注释掉了
 		}),
-		mapping = cmp.mapping.preset.insert({
+		mapping = cmp.mapping.preset.insert({ -- 设置键盘映射
 			["<C-o>"] = cmp.mapping.complete(),
 			["<c-e>"] = cmp.mapping(function()
 				cmp_ultisnips_mappings.compose({ "expand", "jump_forwards" })(function() end)
-			end, {
-				"i",
-				"s", --[[ "c" (to enable the mapping in command mode) ]]
-			}),
-			["<c-n>"] = cmp.mapping(function(fallback)
-				cmp_ultisnips_mappings.jump_backwards(fallback)
 			end, {
 				"i",
 				"s", --[[ "c" (to enable the mapping in command mode) ]]
@@ -168,7 +186,7 @@ M.configfunc = function()
 					end
 				end,
 			}),
-			["<C-l>"] = cmp.mapping({
+			["<C-m>"] = cmp.mapping({
 				i = function(fallback)
 					if cmp.visible() and cmp.get_active_entry() then
 						cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
@@ -177,7 +195,20 @@ M.configfunc = function()
 					end
 				end,
 			}),
-			["<Tab>"] = cmp.mapping({
+			["<Tab>"] = cmp.mapping(function(fallback)
+				cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+			end, {
+				"i",
+				"s", --[[ "c" (to enable the mapping in command mode) ]]
+			}),
+			["<S-Tab>"] = cmp.mapping(function(fallback)
+				cmp_ultisnips_mappings.jump_backwards(fallback)
+			end, {
+				"i",
+				"s", --[[ "c" (to enable the mapping in command mode) ]]
+			}),
+			-- 下面配置是选择提示操作
+			["<C-n>"] = cmp.mapping({
 				i = function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
@@ -188,7 +219,7 @@ M.configfunc = function()
 					end
 				end,
 			}),
-			["<S-Tab>"] = cmp.mapping({
+			["<C-p>"] = cmp.mapping({
 				i = function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
@@ -201,4 +232,4 @@ M.configfunc = function()
 	})
 end
 
-return M
+return M -- 返回模块

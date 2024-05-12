@@ -29,3 +29,6 @@ if vim.fn.has("termguicolors") == 1 then
 	-- enable true color
 	vim.o.termguicolors = true
 end
+
+-- 设置 clang-format 的路径
+-- vim.g.formatter_clang_format_path = "$HOME/.clang-format"
