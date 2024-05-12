@@ -1,0 +1,22 @@
+{
+    "include": ["~/.config/waybar/default"],
+    "layer": "top",
+    "position": "top",
+    "output": "eDP-1",
+    "margin-top": 5,
+    "margin-left": 5,
+    "margin-right": 5,
+    "modules-left": [
+        "custom/wlogout",
+        "hyprland/workspaces",
+        "custom/separator-left",
+        "hyprland/window",
+    ],
+    "modules-center": ["custom/spotify", "tray"],
+    "modules-right": [
+        "group/stats",
+        "custom/separator-right",
+        "group/notifications",
+        "clock",
+    ]
+}
