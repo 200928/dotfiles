@@ -26,3 +26,8 @@ create_symlink "$dotfiles_path/scripts" "$HOME/scripts"
 # create_symlink "$dotfiles_path/suckless" "$HOME/.suckless"
 create_symlink "$dotfiles_path/.tmux.conf" "$HOME/.tmux.conf"
 create_symlink "$dotfiles_path/tmux" "$HOME/.config/tmux"
+create_symlink "$dotfiles_path/.picgo" "$HOME/.picgo"
+
+create_symlink "$dotfiles_path/hypr" "$HOME/.config/hypr"
+create_symlink "$dotfiles_path/hypr/waybar" "$HOME/.config/waybar"
+create_symlink "$dotfiles_path/hypr/mako" "$HOME/.config/mako"
