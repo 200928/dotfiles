@@ -2,6 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # cd ~
 # Path to your oh-my-zsh installation.
+export PYTHONHOME="${HOME}/.local/lib"
 export ZSH="$HOME/.oh-my-zsh"
 
 # 设置代理
@@ -214,10 +215,11 @@ HIST_STAMPS="yyyy-mm-dd"
 #echo "Hello!!!" | lolcat
 export PATH=$PATH:/home/minghui/.local/share/gem/ruby/3.0.0/bin
 export PATH=/home/minghui/.local/bin/:$PATH
+export PATH=$PATH:/usr/local/pgsql/bin
 # alias blog_upload="cd /mnt/file/Blog/灰灰爱吃小云朵/ && ./ArchLinux.shell && cd -"
 alias s="startx"
 alias up="sudo pacman -Syu"
-alias ls="colorls"
+#alias ls="colorls"
 alias ll="colorls -l"
 # alias vim='nvim'
 alias ra='ranger'
