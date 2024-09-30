@@ -34,7 +34,8 @@ return {
 			cpp = { "clang-format" },
 			c = { "clang-format" },
 		},
-		format_on_save = {
+		format_after_save = {
+			-- format_on_save = {
 			-- These options will be passed to conform.format()
 			-- 这里设置一些格式化的文件，比如 .js .jsx .ts .tsx 的在另外一个文件设置了
 			-- pattern = "*.lua,*.graphql,*.json,*.yaml,*.md,*.gql,*.rs",

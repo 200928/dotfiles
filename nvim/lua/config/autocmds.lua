@@ -40,13 +40,13 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.cmd([[
-  augroup _rime
-    autocmd!
-    autocmd InsertEnter * :silent !fcitx5-remote -o
-    autocmd InsertLeave * :silent !fcitx5-remote -o
-    autocmd BufCreate *  :silent !fcitx5-remote -o
-    autocmd BufEnter *  :silent !fcitx5-remote -o
-    autocmd BufLeave *  :silent !fcitx5-remote -o
-  augroup end
-  ]])
+-- vim.cmd([[
+--   augroup _rime
+--     autocmd!
+--     autocmd InsertEnter * :silent !fcitx5-remote -o
+--     autocmd InsertLeave * :silent !fcitx5-remote -o
+--     autocmd BufCreate *  :silent !fcitx5-remote -o
+--     autocmd BufEnter *  :silent !fcitx5-remote -o
+--     autocmd BufLeave *  :silent !fcitx5-remote -o
+--   augroup end
+--   ]])
