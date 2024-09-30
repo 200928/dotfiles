@@ -1,2 +1,2 @@
 #!/bin/bash
-/home/minghui/.config/rofi/applets/menu/time.sh
+echo 2222 > /tmp/222

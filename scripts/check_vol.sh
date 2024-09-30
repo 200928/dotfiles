@@ -1,6 +1,24 @@
 #!/bin/bash
 # amixer sget Master | awk -F "[][]" ' /Mono:/ { print $2 }'
-amixer sget Master | awk -F "[][]" '/Front Left:/ { print $2 }'
+# amixer sget Master | awk -F "[][]" '/Front Left:/ { print $2 }'
+#
+# 获取默认输出设备(比如扬声器)
+default_sink=$(pactl info | grep "Default Sink" | awk '{print $3}')
+
+# 获取默认输入设备(比如麦克风)
+default_source=$(pactl info | grep "Default Source" | awk '{print $3}')
+
+# 得到默认输出设备的音量百分比
+volume=$(pactl list sinks | grep -A 10 ${default_sink} | grep '^[[:space:]]*Volume:' | awk '{print $9}' | grep -v '^$')
+
+# 得到默认输出设备的开启情况
+mute_sink=$(pactl list sinks | grep -A 10 ${default_sink} | grep '^[[:space:]]*Mute:' | awk '{print $2}' | grep -v '^$')
+
+# 得到默认输入设备的开启情况
+mute_source=$(pactl list sources | grep -A 10 ${default_source} | grep '^[[:space:]]*Mute:' | awk '{print $2}' | grep -v '^$')
+
+
+echo "${volume}/${mute_sink}-Mic:${mute_source}"
 
 # minghui@Arch:/mnt/audiovisual/Music
 # % amixer sget Master                                        23-08-28 - 13:01:15
