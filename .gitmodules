@@ -1,6 +1,18 @@
 [submodule "alacritty/themes"]
-	path = alacritty/themes
-	url = https://github.com/alacritty/alacritty-theme
+path = alacritty/themes
+url = https://github.com/alacritty/alacritty-theme
 [submodule "suckless/dwm"]
-	path = suckless/dwm
-	url = git@github.com:200928/dwm.git
+path = suckless/dwm
+url = git@github.com:200928/dwm.git
+[submodule "suckless/st"]
+path = suckless/st
+url = git@github.com:200928/st.git
+[submodule "suckless/dmenu"]
+path = suckless/dmenu
+url = git@github.com:200928/dmenu.git
+[submodule "suckless/slstatus"]
+path = suckless/slstatus
+url = git@github.com:200928/slstatus.git
+[submodule "suckless/dwmblocks-async"]
+path = suckless/dwmblocks-async
+url = https://github.com/UtkarshVerma/dwmblocks-async.git
