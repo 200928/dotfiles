@@ -62,8 +62,10 @@ case $chosen in
         fi
         ;;
     $lock)
-        if [[ -x /usr/bin/betterlockscreen ]]; then
-            betterlockscreen -l
+		if [[ -x /usr/bin/xscreensaver-command ]]; then
+			xscreensaver-command -lock
+		elif [[ -f /usr/bin/betterlockscreen ]]; then
+		    	betterlockscreen -l
 		elif [[ -f /usr/bin/slock ]]; then
 			slock
 		elif [[ -f /usr/bin/i3lock ]]; then
