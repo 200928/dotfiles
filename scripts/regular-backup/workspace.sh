@@ -2,7 +2,7 @@
 
 # 定义源目录和目标目录
 SOURCE_DIR="$HOME/workspace/"
-DEST_DIR="/mnt/audiovisual/Backup/workspace"
+DEST_DIR="/mnt/tpdata/backup/workspace"
 LOG_FILE="$HOME/log/rsync_backup.log"
 
 # 获取当前时间
