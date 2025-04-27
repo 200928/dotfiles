@@ -69,18 +69,18 @@ mkdir -p "$HOME/.config"
 dotfiles_path="$HOME/dotfiles"
 
 # 定义配置文件映射
+# 键是配置文件的名称，值是配置文件的路径（也就是实际配置文件的路径）
 declare -A configs=(
     ["alacritty"]="$HOME/.config/alacritty"
     ["nvim"]="$HOME/.config/nvim"
     ["scripts"]="$HOME/scripts"
     [".tmux.conf"]="$HOME/.tmux.conf"
-    ["tmux"]="$HOME/.config/tmux"
     [".picgo"]="$HOME/.picgo"
     ["hypr"]="$HOME/.config/hypr"
     ["hypr/waybar"]="$HOME/.config/waybar"
     ["hypr/mako"]="$HOME/.config/mako"
     ["atuin"]="$HOME/.config/atuin"
-    ["atuin"]="/tmp/atuin"
+    ["picom.conf"]="$HOME/.config/picom.conf"
 )
 
 # 遍历并创建软链接
