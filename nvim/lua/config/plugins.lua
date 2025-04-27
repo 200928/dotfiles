@@ -56,7 +56,8 @@ require("lazy").setup({
 	require("config.plugins.blame"),
 	require("config.plugins.transparent"),
 	require("config.plugins.leetcode"),
-	require("config.plugins.fittencode"),
-	-- require("config.plugins.winbar"),
+	-- require("config.plugins.fittencode"),
+	require("config.plugins.winbar"),
 	-- require("config.plugins.noice"),
+	require("config.plugins.avante"),
 }, {})
